@@ -19,6 +19,7 @@
         window.translations = {!! $translations !!};
         window.translationJsons = {!! $translationJsons !!};
         window.appLocale = '{!! app()->getLocale() !!}';
+        window.locales = JSON.parse('{!! $locales !!}');
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

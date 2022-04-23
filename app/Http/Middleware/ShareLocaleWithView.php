@@ -38,6 +38,8 @@ class ShareLocaleWithView
             View::share('translationJsons', json_encode(new stdClass()));
         }
 
+        View::share('locales', json_encode(config('locales')));
+
         return $next($request);
     }
 }
