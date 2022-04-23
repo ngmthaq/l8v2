@@ -6,7 +6,6 @@ interface BaseRepoInterface
 {
     /**
      * Get all records
-     * 
      * @param string $orderBy
      * @param string $orderDir
      * @return mixed
@@ -15,7 +14,6 @@ interface BaseRepoInterface
 
     /**
      * Find record by id
-     * 
      * @param int $id
      * @return mixed
      */
@@ -23,7 +21,6 @@ interface BaseRepoInterface
 
     /**
      * Create a new record
-     * 
      * @param array $attributes
      * @return mixed
      */
@@ -31,7 +28,6 @@ interface BaseRepoInterface
 
     /**
      * Update an existed record
-     * 
      * @param int $id
      * @param array $attributes
      * @return mixed
@@ -40,7 +36,6 @@ interface BaseRepoInterface
 
     /**
      * Delete an existed record
-     * 
      * @param int $id
      * @return bool
      */
@@ -48,7 +43,6 @@ interface BaseRepoInterface
 
     /**
      * Delete mutiple records by id
-     * 
      * @param array $attributes
      * @return int
      */
