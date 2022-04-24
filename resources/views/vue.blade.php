@@ -16,9 +16,11 @@
     <div id="app"></div>
 
     <script>
-        window.translations = {!! $translations !!};
-        window.translationJsons = {!! $translationJsons !!};
-        window.appLocale = '{!! app()->getLocale() !!}';
+        window.translations = {!! $translations !!}; // php translation
+        window.translationJsons = {!! $translationJsons !!}; // json translation
+        window.appLocale = '{!! app()->getLocale() !!}'; // app locale
+        window.fallbackLocale = '{!! $fallbackLocale !!}'; // fallback locale
+        window.locales = JSON.parse('{!! $locales !!}'); // valid locales
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

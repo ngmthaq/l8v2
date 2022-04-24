@@ -20,23 +20,29 @@ class ShareLocaleWithView
      */
     public function handle(Request $request, Closure $next)
     {
-        View::share(
-            'translations',
-            collect(File::allFiles(resource_path('lang/' . App::getLocale())))
-                ->flatMap(
-                    function ($file) {
-                        return [
-                            ($translation = $file->getBasename('.php')) => trans($translation),
-                        ];
-                    }
-                )->toJson()
-        );
+        $langs = array_diff(scandir(resource_path('lang')), array('.', '..'));
+        $translationJsons = collect();
+        $translations = collect();
 
-        if (file_exists($json = resource_path('lang/' . App::getLocale() . '.json'))) {
-            View::share('translationJsons', File::get($json));
-        } else {
-            View::share('translationJsons', json_encode(new stdClass()));
+        foreach ($langs as $lang) {
+            $info = pathinfo(resource_path('lang/' . $lang));
+            if (isset($info['extension']) && $info['extension'] === 'json') {
+                $key = $info['filename'];
+                $translationJsons->put($key, json_decode(File::get(resource_path('lang/' . $lang))));
+            } else {
+                $transFolder = collect(File::allFiles(resource_path('lang' . DIRECTORY_SEPARATOR . $lang)))
+                    ->flatMap(function ($file) {
+                        return collect([$file->getBasename('.php') => include($file->getPathname())]);
+                    });
+
+                $translations->put($lang, $transFolder);
+            }
         }
+
+        View::share('translationJsons', $translationJsons);
+        View::share('translations', $translations);
+        View::share('fallbackLocale', config('app.fallback_locale'));
+        View::share('locales', json_encode(config('locales')));
 
         return $next($request);
     }

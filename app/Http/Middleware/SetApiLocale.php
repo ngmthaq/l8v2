@@ -17,7 +17,7 @@ class SetApiLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = $request->header('Locale', 'en');
+        $locale = $request->header('App-Language', config('app.fallback_locale'));
         App::setLocale($locale);
 
         return $next($request);
