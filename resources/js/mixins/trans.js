@@ -1,10 +1,13 @@
+import { getLocale } from '../helpers';
+
 export default {
     methods: {
         $t(key, replace = {}) {
-            let translation = key.split('.').reduce((t, i) => t[i] || key, window.translations);
+            let locale = getLocale();
+            let translation = key.split('.').reduce((t, i) => t[i] || key, window.translations[locale]);
 
             if (translation == key) {
-                translation = window.translationJsons[key] || key;
+                translation = window.translationJsons[locale][key] || key;
             }
 
             for (var placeholder in replace) {
@@ -15,7 +18,8 @@ export default {
         },
 
         $tc(key, count = 1, replace = {}) {
-            let translation = key.split('.').reduce((t, i) => t[i] || key, window.translations).split('|');
+            let locale = getLocale();
+            let translation = key.split('.').reduce((t, i) => t[i] || key, window.translations[locale]).split('|');
 
             translation = count > 1 ? translation[1] : translation[0];
 
