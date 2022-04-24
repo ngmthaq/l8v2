@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "ngmthaq/l8v2cps",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "The Laravel Framework And Vuejs Famework.",
+    "keywords": ["framework", "laravel", "vuejs"],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
