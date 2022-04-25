@@ -8,6 +8,7 @@ abstract class BaseRepo implements BaseRepoInterface
 
     public function __construct()
     {
+        $this->setModel();
     }
 
     abstract public function getModel();
