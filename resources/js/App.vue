@@ -6,15 +6,19 @@
 
 <script>
 export default {
+  metaInfo: {
+    meta: [ /* Your meta data here */ ],
+  },
+
   data() {
     return {
-      updateLocaleTime: 0
+      updateLocaleTime: 0,
     };
   },
 
   methods: {
     changeLocale(locale) {
-      this.updateLocaleTime++
+      this.updateLocaleTime++;
     },
   },
 
